@@ -1,0 +1,1088 @@
+	<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIVILEX | Construcción • Mantenimiento • Ingeniería</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#134074',
+                            900: '#0B2545',
+                            950: '#051923'
+                        },
+                        steel: {
+                            500: '#006494',
+                            600: '#003459',
+                            700: '#002642'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .print-only, .print-only * {
+                visibility: visible;
+            }
+            .print-only {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                background: white !important;
+                color: black !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 font-sans text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- HEADER / NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- CIVILEX LOGO (Matching attached branding with compass rose) -->
+                <a href="#inicio" class="flex items-center gap-3 group focus:outline-none">
+                    <div class="flex flex-col">
+                        <div class="flex items-center gap-2">
+                            <span class="text-2xl sm:text-3xl font-black tracking-tight text-navy-900 uppercase">CIVILEX</span>
+                            <!-- Vector Compass Rose Icon matching user image -->
+                            <svg class="w-7 h-7 text-navy-900 group-hover:text-steel-600 transition-colors" viewBox="0 0 100 100" fill="currentColor">
+                                <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="4"/>
+                                <circle cx="50" cy="50" r="38" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3,3"/>
+                                <!-- Primary Points -->
+                                <polygon points="50,4 56,42 50,50 44,42" fill="currentColor"/>
+                                <polygon points="50,96 56,58 50,50 44,58" fill="currentColor"/>
+                                <polygon points="96,50 58,56 50,50 58,44" fill="currentColor"/>
+                                <polygon points="4,50 42,56 50,50 42,44" fill="currentColor"/>
+                                <!-- Secondary Points -->
+                                <polygon points="82,18 56,44 50,50 56,38" fill="currentColor" opacity="0.75"/>
+                                <polygon points="18,82 44,56 50,50 44,62" fill="currentColor" opacity="0.75"/>
+                                <polygon points="82,82 56,56 50,50 62,56" fill="currentColor" opacity="0.75"/>
+                                <polygon points="18,18 44,44 50,50 38,44" fill="currentColor" opacity="0.75"/>
+                                <circle cx="50" cy="50" r="4" fill="#ffffff" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <span class="text-[9px] sm:text-[10px] font-bold tracking-widest text-slate-500 uppercase border-t border-slate-300 pt-0.5 mt-0.5">
+                            CONSTRUCCIÓN • MANTENIMIENTO • INGENIERÍA
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-6 text-sm font-semibold text-slate-700">
+                    <a href="#inicio" class="hover:text-navy-900 transition-colors">Inicio</a>
+                    <a href="#servicios" class="hover:text-navy-900 transition-colors">Servicios</a>
+                    <a href="#tabulador" class="hover:text-navy-900 transition-colors">Tabulador Salarial</a>
+                    <a href="#partidas" class="hover:text-navy-900 transition-colors">Catálogo CIV</a>
+                    <a href="#cotizador" class="hover:text-navy-900 transition-colors">Generador de Presupuestos</a>
+                    <a href="#contacto" class="hover:text-navy-900 transition-colors">Contacto</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden lg:flex items-center gap-3">
+                    <a href="#cotizador" class="px-4 py-2.5 rounded-lg bg-navy-900 hover:bg-steel-600 text-white font-medium text-sm transition-all shadow-sm flex items-center gap-2">
+                        <i class="fa-solid fa-file-invoice"></i> Crear Presupuesto
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuBtn" class="text-slate-700 hover:text-navy-900 p-2 focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-2">
+            <a href="#inicio" class="block py-2 text-slate-700 font-medium hover:text-navy-900">Inicio</a>
+            <a href="#servicios" class="block py-2 text-slate-700 font-medium hover:text-navy-900">Servicios</a>
+            <a href="#tabulador" class="block py-2 text-slate-700 font-medium hover:text-navy-900">Tabulador Informativo</a>
+            <a href="#partidas" class="block py-2 text-slate-700 font-medium hover:text-navy-900">Catálogo de Partidas</a>
+            <a href="#cotizador" class="block py-2 text-slate-700 font-medium hover:text-navy-900">Generador de Presupuestos</a>
+            <a href="#contacto" class="block py-2 text-slate-700 font-medium hover:text-navy-900">Contacto</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative bg-navy-900 text-white py-20 lg:py-24 overflow-hidden no-print">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-steel-500/20 border border-steel-500/30 text-teal-300 text-xs font-semibold tracking-wide uppercase">
+                        <i class="fa-solid fa-shield-halved"></i> Soluciones Integrales en Ingeniería y Obras
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight">
+                        Excelencia en <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-teal-200 to-white">Construcción & Mantenimiento</span>
+                    </h1>
+                    <p class="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
+                        Supervisión técnica, ejecución de obras civiles, mantenimientos integrales y cotizaciones estructuradas con partidas de obra normadas.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <a href="#cotizador" class="px-6 py-3.5 rounded-lg bg-steel-500 hover:bg-steel-600 text-white font-bold text-base transition-all shadow-lg flex items-center gap-2">
+                            <i class="fa-solid fa-calculator"></i> Generador de Presupuestos
+                        </a>
+                        <a href="#tabulador" class="px-6 py-3.5 rounded-lg bg-navy-800 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-base transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-table-list"></i> Tabulador Salarial
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+                    <div class="bg-navy-800/80 p-6 rounded-xl border border-slate-700/60 backdrop-blur shadow-xl">
+                        <div class="w-12 h-12 rounded-lg bg-steel-500/20 text-teal-300 flex items-center justify-center text-2xl font-bold mb-4">
+                            <i class="fa-solid fa-helmet-safety"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-1">Obras Civiles</h3>
+                        <p class="text-xs text-slate-300">Construcción, refacciones de mampostería y revestimientos lisos o rústicos.</p>
+                    </div>
+                    <div class="bg-navy-800/80 p-6 rounded-xl border border-slate-700/60 backdrop-blur shadow-xl">
+                        <div class="w-12 h-12 rounded-lg bg-teal-500/20 text-teal-300 flex items-center justify-center text-2xl font-bold mb-4">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-1">Mantenimiento</h3>
+                        <p class="text-xs text-slate-300">Reparación de grietas, fisuras, encamisados y pintura especializada.</p>
+                    </div>
+                    <div class="bg-navy-800/80 p-6 rounded-xl border border-slate-700/60 backdrop-blur shadow-xl">
+                        <div class="w-12 h-12 rounded-lg bg-blue-500/20 text-blue-300 flex items-center justify-center text-2xl font-bold mb-4">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-1">Instalaciones</h3>
+                        <p class="text-xs text-slate-300">Puntos eléctricos 110V y redes sanitarias de aguas claras.</p>
+                    </div>
+                    <div class="bg-navy-800/80 p-6 rounded-xl border border-slate-700/60 backdrop-blur shadow-xl">
+                        <div class="w-12 h-12 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center text-2xl font-bold mb-4">
+                            <i class="fa-solid fa-file-pdf"></i>
+                        </div>
+                        <h3 class="text-lg font-bold mb-1">Presupuestos PDF</h3>
+                        <p class="text-xs text-slate-300">Emisión de cotizaciones de obra listas para imprimir o enviar por WhatsApp.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16 no-print">
+
+        <!-- SECCIÓN DE SERVICIOS -->
+        <section id="servicios" class="scroll-mt-24">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-wider text-steel-500 bg-slate-200 px-3 py-1 rounded-full">Nuestras Capacidades</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-navy-900 mt-3">Ingeniería & Mantenimiento Especializado</h2>
+                <p class="text-slate-600 text-sm sm:text-base mt-2">Soluciones técnicas para infraestructura comercial, industrial y residencial.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-navy-900 text-white flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-building"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 mb-3">Construcción & Acabados</h3>
+                    <ul class="text-sm text-slate-600 space-y-2">
+                        <li><i class="fa-solid fa-check text-steel-500 mr-2"></i>Revestimientos lisos y rústicos</li>
+                        <li><i class="fa-solid fa-check text-steel-500 mr-2"></i>Encamisado profesional de paredes</li>
+                        <li><i class="fa-solid fa-check text-steel-500 mr-2"></i>Pintura de caucho Clase A y esmaltes</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-steel-600 text-white flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-house-chimney-crack"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 mb-3">Reparaciones Estructurales</h3>
+                    <ul class="text-sm text-slate-600 space-y-2">
+                        <li><i class="fa-solid fa-check text-steel-500 mr-2"></i>Saneamiento y sellado de fisuras</li>
+                        <li><i class="fa-solid fa-check text-steel-500 mr-2"></i>Tratamiento profundo de grietas</li>
+                        <li><i class="fa-solid fa-check text-steel-500 mr-2"></i>Recuperación de fachadas y muros</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-navy-800 text-white flex items-center justify-center text-xl mb-6">
+                        <i class="fa-solid fa-plug-circle-bolt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy-900 mb-3">Puntos de Servicio</h3>
+                    <ul class="text-sm text-slate-600 space-y-2">
+                        <li><i class="fa-solid fa-check text-steel-500 mr-2"></i>Instalación y reparación de puntos 110V</li>
+                        <li><i class="fa-solid fa-check text-steel-500 mr-2"></i>Redes de agua clara y fontanería</li>
+                        <li><i class="fa-solid fa-check text-steel-500 mr-2"></i>Adecuación técnica de infraestructura</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÓDULO 1: TABULADOR DE SALARIOS DEL SECTOR CONSTRUCCIÓN (PURAMENTE INFORMATIVO) -->
+        <section id="tabulador" class="scroll-mt-24 bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span class="text-xs font-bold uppercase tracking-wider text-steel-600 bg-blue-50 px-3 py-1 rounded-md border border-blue-200">
+                            <i class="fa-solid fa-info-circle mr-1"></i> Módulo Puramente Informativo
+                        </span>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900 flex items-center gap-2 mt-2">
+                        <i class="fa-solid fa-table-list text-steel-600"></i> Tabulador de Salarios del Sector Construcción
+                    </h2>
+                    <p class="text-sm text-slate-500 mt-1">Tabla de consulta de referencia salarial por nivel y oficio de mano de obra.</p>
+                </div>
+
+                <div class="flex items-center gap-2 bg-slate-100 p-2.5 rounded-xl border border-slate-300">
+                    <span class="text-xs font-bold text-slate-700 uppercase">Tasa de Cambio:</span>
+                    <div class="relative">
+                        <span class="absolute left-2.5 top-1.5 text-xs text-slate-500 font-bold">Bs/$</span>
+                        <input type="number" id="usdRate" value="65.00" step="0.5" class="w-24 pl-12 pr-2 py-1 bg-white border border-slate-300 rounded text-sm font-bold text-navy-900 focus:outline-none focus:ring-2 focus:ring-steel-600">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disclaimer Banner -->
+            <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-lg mb-6">
+                <div class="flex items-start">
+                    <div class="flex-shrink-0">
+                        <i class="fa-solid fa-circle-exclamation text-amber-600 text-lg"></i>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-xs sm:text-sm text-amber-800 font-medium">
+                            <strong>Nota Aclaratoria:</strong> Este tabulador es de carácter estrictamente informativo y de referencia sectorial según la convención de la construcción. No constituye la base de cálculo directo del cotizador de obras.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters & Search Bar -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                <div class="md:col-span-2">
+                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Buscar por Cargo u Oficio</label>
+                    <div class="relative">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-sm"></i>
+                        <input type="text" id="salarySearch" placeholder="Ej: Albañil, Electricista, Caporal, Maestro..." class="w-full pl-9 pr-4 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-steel-600 focus:outline-none">
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Filtrar por Nivel / Categoría</label>
+                    <select id="levelFilter" class="w-full px-3 py-2 rounded-lg border border-slate-300 text-sm focus:ring-2 focus:ring-steel-600 focus:outline-none bg-white">
+                        <option value="ALL">Todos los Niveles</option>
+                        <option value="Nivel 1">Nivel 1 - Obreros / Vigilantes</option>
+                        <option value="Nivel 2">Nivel 2 - Ayudantes</option>
+                        <option value="Nivel 3">Nivel 3 - Oficiales 2da / Caporales</option>
+                        <option value="Nivel 5">Nivel 5 - Oficiales 1ra (Especialistas)</option>
+                        <option value="Nivel 7">Nivel 7 - Maestros 2da</option>
+                        <option value="Nivel 9">Nivel 9 - Maestros de Obra 1ra</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Salary Table -->
+            <div class="overflow-x-auto rounded-xl border border-slate-200 shadow-sm">
+                <table class="w-full text-left text-sm text-slate-600">
+                    <thead class="bg-navy-900 text-white text-xs font-bold uppercase tracking-wider">
+                        <tr>
+                            <th scope="col" class="px-4 py-3.5">Cód. / Nivel</th>
+                            <th scope="col" class="px-4 py-3.5">Oficio / Denominación</th>
+                            <th scope="col" class="px-4 py-3.5 text-right">Salario Homologado (Bs.)</th>
+                            <th scope="col" class="px-4 py-3.5 text-right">Equivalente Ref. ($ USD)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="salaryTableBody" class="divide-y divide-slate-200 bg-white font-medium">
+                        <!-- Rendered via JS -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="noSalaryResults" class="hidden text-center py-8 text-slate-500 text-sm">
+                No se encontraron oficios que coincidan con la búsqueda.
+            </div>
+        </section>
+
+        <!-- MÓDULO 2: CATÁLOGO DE PARTIDAS DE OBRA -->
+        <section id="partidas" class="scroll-mt-24 bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-steel-600">Catálogo Técnico Normado</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-navy-900 flex items-center gap-2">
+                        <i class="fa-solid fa-list-check text-steel-600"></i> Partidas de Obra CIVILEX
+                    </h2>
+                    <p class="text-sm text-slate-500 mt-1">Partidas principales para presupuestación de obras civiles y reformas.</p>
+                </div>
+                <button onclick="openCustomPartidaModal()" class="px-4 py-2.5 bg-navy-900 hover:bg-steel-600 text-white text-xs font-bold uppercase tracking-wider rounded-lg transition-colors flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-plus"></i> Añadir Partida Personalizada
+                </button>
+            </div>
+
+            <!-- Items Cards Grid -->
+            <div id="partidasGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Items generated via JS -->
+            </div>
+        </section>
+
+        <!-- MÓDULO 3: GENERADOR DE PRESUPUESTOS (EXCLUSIVO PARTIDAS DE OBRA) -->
+        <section id="cotizador" class="scroll-mt-24 bg-navy-950 rounded-2xl p-6 sm:p-8 text-white shadow-2xl border border-slate-800">
+            <div class="max-w-4xl mb-8">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/20 text-teal-300 text-xs font-bold uppercase tracking-wide mb-2">
+                    <i class="fa-solid fa-calculator"></i> Módulo Exclusivo para Partidas de Obra
+                </div>
+                <h2 class="text-2xl sm:text-4xl font-extrabold text-white flex items-center gap-3">
+                    Generador de Presupuestos Técnico-Económico
+                </h2>
+                <p class="text-slate-300 text-sm sm:text-base mt-2">
+                    Cargue cómputos métricos, configure los datos del cliente e IVA para emitir una propuesta técnica formal.
+                </p>
+            </div>
+
+            <!-- DATOS DEL CLIENTE Y PROYECTO -->
+            <div class="bg-navy-900/90 p-5 rounded-xl border border-slate-700 mb-8 backdrop-blur">
+                <h3 class="text-xs font-bold uppercase tracking-wider text-teal-300 mb-4 flex items-center gap-2">
+                    <i class="fa-solid fa-folder-open"></i> Datos del Cliente y Proyecto
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-slate-800">
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-300 uppercase mb-1">Cliente / Empresa</label>
+                        <input type="text" id="presCliente" value="Empresa / Cliente Genérico" class="w-full p-2.5 bg-slate-50 border border-slate-600 rounded-lg text-xs font-medium focus:ring-2 focus:ring-teal-400">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-300 uppercase mb-1">RIF / C.I.</label>
+                        <input type="text" id="presRIF" value="J-12345678-0" class="w-full p-2.5 bg-slate-50 border border-slate-600 rounded-lg text-xs font-medium focus:ring-2 focus:ring-teal-400">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-300 uppercase mb-1">Ubicación / Dirección</label>
+                        <input type="text" id="presUbicacion" value="Caracas, Distrito Capital" class="w-full p-2.5 bg-slate-50 border border-slate-600 rounded-lg text-xs font-medium focus:ring-2 focus:ring-teal-400">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold text-slate-300 uppercase mb-1">N° Presupuesto</label>
+                        <input type="text" id="presNum" value="CIV-2026-001" class="w-full p-2.5 bg-slate-50 border border-slate-600 rounded-lg text-xs font-bold focus:ring-2 focus:ring-teal-400">
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Selector Form -->
+                <div class="lg:col-span-5 bg-white text-slate-800 p-6 rounded-xl shadow-lg border border-slate-200">
+                    <h3 class="text-base font-bold text-navy-900 mb-4 pb-2 border-b border-slate-200 flex items-center justify-between">
+                        <span>Insertar Renglón de Obra</span>
+                        <i class="fa-solid fa-plus-circle text-steel-600"></i>
+                    </h3>
+
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Seleccionar Partida de Obra</label>
+                            <select id="cotizadorPartidaSelect" class="w-full p-2.5 rounded-lg border border-slate-300 text-xs font-semibold focus:ring-2 focus:ring-steel-600">
+                                <!-- Populated dynamically -->
+                            </select>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Cantidad / Cómputo</label>
+                                <input type="number" id="cotizadorCantidad" value="10" min="0.1" step="0.5" class="w-full p-2.5 rounded-lg border border-slate-300 text-sm font-bold focus:ring-2 focus:ring-steel-600">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Unidad</label>
+                                <input type="text" id="cotizadorUnidad" readonly class="w-full p-2.5 rounded-lg border border-slate-200 bg-slate-100 text-xs text-slate-700 font-bold">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Precio Unitario ($ USD)</label>
+                            <input type="number" id="cotizadorPrecioUnit" step="0.5" class="w-full p-2.5 rounded-lg border border-slate-300 text-sm font-bold text-steel-700 focus:ring-2 focus:ring-steel-600">
+                            <span class="text-[10px] text-slate-500 mt-1 block">Puede modificar el precio unitario antes de incluirlo.</span>
+                        </div>
+
+                        <button onclick="agregarAlPresupuesto()" class="w-full py-3 bg-steel-600 hover:bg-steel-700 text-white font-bold rounded-lg text-sm transition-all shadow flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-plus"></i> Añadir Renglón a la Cotización
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Budget Summary Box -->
+                <div class="lg:col-span-7 bg-navy-900 p-6 rounded-xl border border-slate-700 shadow-2xl flex flex-col justify-between min-h-[460px]">
+                    <div>
+                        <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+                            <h3 class="text-base font-bold text-white flex items-center gap-2">
+                                <i class="fa-solid fa-receipt text-teal-400"></i> Renglones de Obra en Cotización
+                            </h3>
+                            <button onclick="limpiarCotizacion()" class="text-xs text-rose-400 hover:underline flex items-center gap-1">
+                                <i class="fa-solid fa-rotate-left"></i> Vaciar Lista
+                            </button>
+                        </div>
+
+                        <!-- Added Items Table -->
+                        <div class="overflow-x-auto my-4 max-h-64 overflow-y-auto">
+                            <table class="w-full text-left text-xs text-slate-300">
+                                <thead class="text-[10px] font-bold uppercase tracking-wider text-slate-400 border-b border-slate-800">
+                                    <tr>
+                                        <th class="py-2">Partida</th>
+                                        <th class="py-2 text-center">Cant.</th>
+                                        <th class="py-2 text-center">Unid.</th>
+                                        <th class="py-2 text-right">P.U. ($)</th>
+                                        <th class="py-2 text-right">Total ($)</th>
+                                        <th class="py-2 text-center"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="presupuestoTableBody" class="divide-y divide-slate-800">
+                                    <!-- Rendered dynamically -->
+                                </tbody>
+                            </table>
+                            <div id="emptyPresupuesto" class="text-xs text-slate-500 text-center py-10">
+                                No se han añadido partidas de obra a la propuesta.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Totals & Export Actions -->
+                    <div class="pt-4 border-t border-slate-800 space-y-3 bg-navy-950/60 p-4 rounded-xl">
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-slate-400">Subtotal Obra:</span>
+                            <span id="subtotalUSD" class="font-bold text-slate-200">$0.00</span>
+                        </div>
+                        
+                        <div class="flex justify-between items-center text-xs">
+                            <div class="flex items-center gap-2">
+                                <span class="text-slate-400">Aplicar IVA (%):</span>
+                                <input type="number" id="presIVA" value="16" min="0" max="100" class="w-14 p-1 bg-slate-800 border border-slate-600 rounded text-center text-xs font-bold text-white" onchange="actualizarResumenPresupuesto()">
+                            </div>
+                            <span id="ivaUSD" class="font-bold text-slate-300">$0.00</span>
+                        </div>
+
+                        <div class="flex justify-between items-center text-sm pt-2 border-t border-slate-800">
+                            <span class="text-white font-extrabold">TOTAL GENERAL ($ USD):</span>
+                            <span id="totalUSD" class="text-xl font-black text-teal-400">$0.00</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-slate-400">
+                            <span>Equivalente estimado (Bs.):</span>
+                            <span id="totalBS" class="font-bold text-slate-200">0.00 Bs.</span>
+                        </div>
+
+                        <div class="pt-3 grid grid-cols-2 gap-3">
+                            <button onclick="imprimirPresupuesto()" class="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 text-white text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-2 border border-slate-700 shadow-sm">
+                                <i class="fa-solid fa-print text-teal-400"></i> Imprimir / Guardar PDF
+                            </button>
+                            <button onclick="solicitarAtencionPresupuesto()" class="px-3 py-2.5 bg-teal-600 hover:bg-teal-500 text-white text-xs font-bold rounded-lg transition-colors flex items-center justify-center gap-2 shadow-sm">
+                                <i class="fa-brands fa-whatsapp text-white text-sm"></i> Enviar por WhatsApp
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE CONTACTO -->
+        <section id="contacto" class="scroll-mt-24 bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-steel-600">Atención Técnica</span>
+                    <h2 class="text-3xl font-extrabold text-navy-900 mt-1 mb-4">Contacte a CIVILEX</h2>
+                    <p class="text-slate-600 text-sm mb-6">Estamos listos para evaluar sus proyectos de obra civil, mantenimiento e instalaciones técnicas.</p>
+                    
+                    <div class="space-y-4 text-sm">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-blue-50 text-navy-900 flex items-center justify-center">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-navy-900">Oficina Principal</p>
+                                <p class="text-slate-500 text-xs">Caracas, Venezuela</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-blue-50 text-navy-900 flex items-center justify-center">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-navy-900">Teléfonos de Contacto</p>
+                                <p class="text-slate-500 text-xs">+58 (212) 555-0199 / +58 (414) 000-0000</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-blue-50 text-navy-900 flex items-center justify-center">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-navy-900">Correo Electrónico</p>
+                                <p class="text-slate-500 text-xs">contacto@civilex.com.ve</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form onsubmit="handleContactSubmit(event)" class="space-y-4 bg-slate-50 p-6 rounded-xl border border-slate-200">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Nombre Completo</label>
+                        <input type="text" required class="w-full p-2.5 rounded-lg border border-slate-300 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Correo Electrónico</label>
+                        <input type="email" required class="w-full p-2.5 rounded-lg border border-slate-300 text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-slate-700 mb-1">Mensaje / Requerimiento de Obra</label>
+                        <textarea rows="3" required class="w-full p-2.5 rounded-lg border border-slate-300 text-sm"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-navy-900 hover:bg-steel-600 text-white font-bold rounded-lg text-sm transition-all shadow">
+                        Enviar Solicitud
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- PRINT VIEW TEMPLATE (OFFICIAL CIVILEX PRESUPUESTO FORMAT) -->
+    <div class="hidden print-only p-8 bg-white text-slate-900">
+        <div class="flex justify-between items-start border-b-2 border-navy-900 pb-4 mb-6">
+            <div>
+                <div class="flex items-center gap-2">
+                    <span class="text-3xl font-black text-navy-900 tracking-tight">CIVILEX</span>
+                    <svg class="w-6 h-6 text-navy-900" viewBox="0 0 100 100" fill="currentColor">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="4"/>
+                        <polygon points="50,6 55,42 50,50 45,42" fill="currentColor"/>
+                        <polygon points="50,94 55,58 50,50 45,58" fill="currentColor"/>
+                        <polygon points="94,50 58,55 50,50 58,45" fill="currentColor"/>
+                        <polygon points="6,50 42,55 50,50 42,45" fill="currentColor"/>
+                    </svg>
+                </div>
+                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-600 border-t border-slate-300 pt-0.5 mt-0.5">
+                    CONSTRUCCIÓN • MANTENIMIENTO • INGENIERÍA
+                </p>
+                <p class="text-xs text-slate-500 mt-2">RIF: J-40000000-0 | Tlf: +58 (212) 555-0199</p>
+            </div>
+            <div class="text-right text-xs">
+                <h2 class="text-lg font-black text-navy-900 uppercase">Presupuesto de Obra</h2>
+                <p class="font-bold text-slate-700">N°: <span id="printNum"></span></p>
+                <p class="text-slate-500">Fecha: <span id="printDate"></span></p>
+            </div>
+        </div>
+
+        <div class="bg-slate-50 p-4 rounded border border-slate-300 mb-6 text-xs grid grid-cols-2 gap-4">
+            <div>
+                <p><strong class="uppercase">Cliente / Empresa:</strong> <span id="printCliente"></span></p>
+                <p><strong class="uppercase">RIF / C.I.:</strong> <span id="printRIF"></span></p>
+                <p><strong class="uppercase">Ubicación Obra:</strong> <span id="printUbicacion"></span></p>
+            </div>
+            <div class="text-right">
+                <p><strong class="uppercase">Tasa de Cambio:</strong> <span id="printTasa"></span> Bs./USD</p>
+                <p><strong class="uppercase">Validez:</strong> 15 días continuos</p>
+            </div>
+        </div>
+
+        <div id="printItemsTable" class="mb-6">
+            <!-- Printed items injected here -->
+        </div>
+
+        <div class="flex justify-end text-xs">
+            <div class="w-64 space-y-1 text-right font-medium">
+                <div class="flex justify-between py-1 border-b border-slate-200">
+                    <span>Subtotal Obra:</span>
+                    <span id="printSubtotalUSD" class="font-bold"></span>
+                </div>
+                <div class="flex justify-between py-1 border-b border-slate-200">
+                    <span id="printIvaLabel">IVA:</span>
+                    <span id="printIvaUSD" class="font-bold"></span>
+                </div>
+                <div class="flex justify-between py-1 text-sm font-black text-navy-900 border-b-2 border-navy-900">
+                    <span>TOTAL PRESUPUESTO ($):</span>
+                    <span id="printTotalUSD"></span>
+                </div>
+                <div class="flex justify-between py-1 text-xs font-bold text-slate-600">
+                    <span>TOTAL EQUIVALENTE (BS.):</span>
+                    <span id="printTotalBS"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-slate-300 text-[10px] text-slate-500 flex justify-between">
+            <div>
+                <p class="font-bold text-slate-700">Aprobado por CIVILEX Ingeniería</p>
+                <p>Firma y Sello Autorizado</p>
+            </div>
+            <div class="text-right">
+                <p>Aceptado por Cliente / Contratante</p>
+                <p>Firma y Fecha</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CUSTOM PARTIDA -->
+    <div id="customPartidaModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 border border-slate-200">
+            <div class="flex justify-between items-center pb-3 border-b border-slate-200 mb-4">
+                <h3 class="text-base font-bold text-navy-900">Añadir Partida al Catálogo</h3>
+                <button onclick="closeCustomPartidaModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <form onsubmit="saveCustomPartida(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nombre / Descripción de la Partida</label>
+                    <input type="text" id="newPartidaNombre" required placeholder="Ej: Vaciado de Losas de Concreto" class="w-full p-2 border border-slate-300 rounded text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Unidad de Medida</label>
+                    <input type="text" id="newPartidaUnidad" required placeholder="Ej: m², m³, Pt, Global" class="w-full p-2 border border-slate-300 rounded text-sm">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Precio Unitario Ref. ($ USD)</label>
+                    <input type="number" id="newPartidaPrecio" step="0.01" required placeholder="Ej: 15.50" class="w-full p-2 border border-slate-300 rounded text-sm">
+                </div>
+                <div class="flex justify-end gap-2 pt-2">
+                    <button type="button" onclick="closeCustomPartidaModal()" class="px-4 py-2 text-xs font-bold text-slate-600 bg-slate-100 rounded-lg">Cancelar</button>
+                    <button type="submit" class="px-4 py-2 text-xs font-bold text-white bg-steel-600 rounded-lg">Guardar Partida</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-950 text-slate-400 border-t border-slate-800 py-8 no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs space-y-2">
+            <p>© 2026 <strong>CIVILEX</strong> - Construcción • Mantenimiento • Ingeniería. Todos los derechos reservados.</p>
+            <p class="text-slate-500">Catálogo técnico normado para presupuestos de obras civiles y reformas en general.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Tabulador de Salarios Data (strictly for informative viewing)
+        const salariosData = [
+            { code: "1.1", nivel: "Nivel 1", oficio: "OBRERO DE 1era", salarioBs: 85.00 },
+            { code: "1.2", nivel: "Nivel 1", oficio: "VIGILANTE", salarioBs: 85.00 },
+            { code: "2.1", nivel: "Nivel 2", oficio: "AYUDANTE", salarioBs: 98.50 },
+            { code: "2.5", nivel: "Nivel 2", oficio: "AYUDANTE DE OPERADORES", salarioBs: 102.00 },
+            { code: "3.1", nivel: "Nivel 3", oficio: "CAPORAL", salarioBs: 125.00 },
+            { code: "3.2", nivel: "Nivel 3", oficio: "ALBAÑIL DE 2da", salarioBs: 118.00 },
+            { code: "3.5", nivel: "Nivel 3", oficio: "PLOMERO DE 2da", salarioBs: 118.00 },
+            { code: "3.6", nivel: "Nivel 3", oficio: "ELECTRICISTA DE 2da", salarioBs: 120.00 },
+            { code: "3.8", nivel: "Nivel 3", oficio: "PINTOR DE 2da", salarioBs: 115.00 },
+            { code: "5.1", nivel: "Nivel 5", oficio: "ALBAÑIL DE 1ra", salarioBs: 145.00 },
+            { code: "5.4", nivel: "Nivel 5", oficio: "PLOMERO DE 1ra", salarioBs: 148.00 },
+            { code: "5.5", nivel: "Nivel 5", oficio: "ELECTRICISTA DE 1ra", salarioBs: 150.00 },
+            { code: "5.7", nivel: "Nivel 5", oficio: "PINTOR DE 1ra", salarioBs: 140.00 },
+            { code: "5.17", nivel: "Nivel 5", oficio: "SOLDADOR DE 1ra", salarioBs: 155.00 },
+            { code: "7.1", nivel: "Nivel 7", oficio: "MAESTRO ALBAÑIL", salarioBs: 180.00 },
+            { code: "7.5", nivel: "Nivel 7", oficio: "MAESTRO ELECTRICISTA", salarioBs: 190.00 },
+            { code: "9.1", nivel: "Nivel 9", oficio: "MAESTRO DE OBRA DE 1ra", salarioBs: 220.00 },
+            { code: "9.2", nivel: "Nivel 9", oficio: "MAESTRO MECANICO", salarioBs: 210.00 }
+        ];
+
+        // Official Partidas de Obra (Work items) CIV-01 to CIV-09
+        let partidasData = [
+            { id: "civ-01", codigo: "CIV-01", nombre: "Reparación de fisuras", unidad: "m", precioUSD: 6.50, desc: "Saneamiento, sellado elástico y preparación de superficie para fisuras.", icono: "fa-mortar-pestle" },
+            { id: "civ-02", codigo: "CIV-02", nombre: "Reparación de grietas", unidad: "m", precioUSD: 12.00, desc: "Apertura en V, puente de adherencia estructural y mortero de alta resistencia.", icono: "fa-crack" },
+            { id: "civ-03", codigo: "CIV-03", nombre: "Revestimiento rústico", unidad: "m²", precioUSD: 9.50, desc: "Friso rústico/salpicado decorativo para exteriores e interiores.", icono: "fa-cubes" },
+            { id: "civ-04", codigo: "CIV-04", nombre: "Revestimiento liso", unidad: "m²", precioUSD: 11.00, desc: "Friso fino pulido listo para acabado final de pintura.", icono: "fa-square" },
+            { id: "civ-05", codigo: "CIV-05", nombre: "Encamisado de pared", unidad: "m²", precioUSD: 8.00, desc: "Lijado, imprimación y doble capa de encamisado con pasta profesional.", icono: "fa-paint-roller" },
+            { id: "civ-06", codigo: "CIV-06", nombre: "Pintura de esmalte en rejas", unidad: "m²", precioUSD: 7.50, desc: "Limpieza desoxida, fondo anticorrosivo y esmalte sintético.", icono: "fa-brush" },
+            { id: "civ-07", codigo: "CIV-07", nombre: "Pintura de caucho en paredes Clase A", unidad: "m²", precioUSD: 5.50, desc: "Pintura lavable de alto rendimiento Clase A a dos manos.", icono: "fa-fill-drip" },
+            { id: "civ-08", codigo: "CIV-08", nombre: "Reparación de punto eléctrico 110V", unidad: "Pt", precioUSD: 15.00, desc: "Sustitución de cableado, tomacorriente/interruptor de 110V.", icono: "fa-plug" },
+            { id: "civ-09", codigo: "CIV-09", nombre: "Reparación de punto de aguas claras", unidad: "Pt", precioUSD: 22.00, desc: "Sustitución de tubería de agua potable, conexiones y pruebas de presión.", icono: "fa-faucet-drip" }
+        ];
+
+        // Active Budget Items (Exclusively Work Partidas)
+        let presupuestoList = [];
+
+        // DOM Loaded Init
+        document.addEventListener('DOMContentLoaded', () => {
+            renderSalaryTable();
+            renderPartidasGrid();
+            populateCotizadorSelect();
+
+            // Setup Mobile Menu Toggle
+            const mobileBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Listeners for Salary Filters (Informative)
+            document.getElementById('salarySearch').addEventListener('input', renderSalaryTable);
+            document.getElementById('levelFilter').addEventListener('change', renderSalaryTable);
+            document.getElementById('usdRate').addEventListener('input', () => {
+                renderSalaryTable();
+                actualizarResumenPresupuesto();
+            });
+
+            // Listeners for Cotizador Select
+            document.getElementById('cotizadorPartidaSelect').addEventListener('change', (e) => {
+                const item = partidasData.find(p => p.id === e.target.value);
+                if(item) {
+                    document.getElementById('cotizadorUnidad').value = item.unidad;
+                    document.getElementById('cotizadorPrecioUnit').value = item.precioUSD;
+                }
+            });
+        });
+
+        // Render Informative Salary Table
+        function renderSalaryTable() {
+            const search = document.getElementById('salarySearch').value.toLowerCase();
+            const level = document.getElementById('levelFilter').value;
+            const rate = parseFloat(document.getElementById('usdRate').value) || 65.0;
+            const tbody = document.getElementById('salaryTableBody');
+            const noResults = document.getElementById('noSalaryResults');
+
+            tbody.innerHTML = '';
+
+            const filtered = salariosData.filter(s => {
+                const matchSearch = s.oficio.toLowerCase().includes(search) || s.code.includes(search);
+                const matchLevel = (level === 'ALL') || s.nivel === level;
+                return matchSearch && matchLevel;
+            });
+
+            if (filtered.length === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+                filtered.forEach(s => {
+                    const usdVal = (s.salarioBs / rate).toFixed(2);
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-slate-50 transition-colors";
+                    tr.innerHTML = `
+                        <td class="px-4 py-3 font-bold text-navy-900">${s.code} <span class="text-[10px] font-normal text-slate-400 block">${s.nivel}</span></td>
+                        <td class="px-4 py-3 font-semibold text-slate-800">${s.oficio}</td>
+                        <td class="px-4 py-3 text-right text-slate-700 font-bold">${s.salarioBs.toFixed(2)} Bs.</td>
+                        <td class="px-4 py-3 text-right text-steel-600 font-black">$ ${usdVal}</td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            }
+        }
+
+        // Render Partidas Grid Cards
+        function renderPartidasGrid() {
+            const grid = document.getElementById('partidasGrid');
+            grid.innerHTML = '';
+
+            partidasData.forEach(p => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-50 border border-slate-200 rounded-xl p-5 hover:border-steel-500 hover:shadow-md transition-all flex flex-col justify-between group";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-black px-2.5 py-1 rounded bg-navy-900 text-white">
+                                ${p.codigo || 'PARTIDA'}
+                            </span>
+                            <span class="text-xs font-extrabold px-2.5 py-1 rounded-full bg-slate-200 text-slate-700">
+                                Unid: ${p.unidad}
+                            </span>
+                        </div>
+                        <h3 class="text-base font-bold text-navy-900 mb-1">${p.nombre}</h3>
+                        <p class="text-xs text-slate-500 mb-4 leading-relaxed">${p.desc}</p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-200 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] text-slate-400 font-bold uppercase block">P.U. Referencial</span>
+                            <span class="text-lg font-black text-steel-600">$${p.precioUSD.toFixed(2)} <span class="text-xs font-normal text-slate-500">/${p.unidad}</span></span>
+                        </div>
+                        <button onclick="agregarDirectoCotizador('${p.id}')" class="px-3 py-1.5 bg-steel-600 hover:bg-steel-700 text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-1 shadow-sm">
+                            <i class="fa-solid fa-plus"></i> Añadir a Presupuesto
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Populate Select inside Presupuesto Form
+        function populateCotizadorSelect() {
+            const select = document.getElementById('cotizadorPartidaSelect');
+            select.innerHTML = '';
+
+            partidasData.forEach(p => {
+                const opt = document.createElement('option');
+                opt.value = p.id;
+                opt.textContent = `[${p.codigo || 'OBRA'}] ${p.nombre} ($${p.precioUSD.toFixed(2)} / ${p.unidad})`;
+                select.appendChild(opt);
+            });
+
+            if(partidasData.length > 0) {
+                document.getElementById('cotizadorUnidad').value = partidasData[0].unidad;
+                document.getElementById('cotizadorPrecioUnit').value = partidasData[0].precioUSD;
+            }
+        }
+
+        // Add Partida to Budget
+        function agregarAlPresupuesto() {
+            const selectId = document.getElementById('cotizadorPartidaSelect').value;
+            const cant = parseFloat(document.getElementById('cotizadorCantidad').value);
+            const precioCustom = parseFloat(document.getElementById('cotizadorPrecioUnit').value);
+
+            if(!cant || cant <= 0) {
+                alert('Por favor ingrese una cantidad o cómputo métrico válido.');
+                return;
+            }
+
+            const itemData = partidasData.find(p => p.id === selectId);
+            if(!itemData) return;
+
+            const unitPrice = !isNaN(precioCustom) && precioCustom >= 0 ? precioCustom : itemData.precioUSD;
+            const totalItemUSD = unitPrice * cant;
+
+            // Check if already in budget
+            const existing = presupuestoList.find(i => i.id === selectId);
+            if(existing) {
+                existing.cant += cant;
+                existing.precioUSD = unitPrice;
+                existing.totalUSD = existing.cant * existing.precioUSD;
+            } else {
+                presupuestoList.push({
+                    id: itemData.id,
+                    codigo: itemData.codigo || 'CIV-OBRA',
+                    nombre: itemData.nombre,
+                    unidad: itemData.unidad,
+                    cant: cant,
+                    precioUSD: unitPrice,
+                    totalUSD: totalItemUSD
+                });
+            }
+
+            actualizarResumenPresupuesto();
+        }
+
+        function agregarDirectoCotizador(id) {
+            const itemData = partidasData.find(p => p.id === id);
+            if(!itemData) return;
+
+            const existing = presupuestoList.find(i => i.id === id);
+            if(existing) {
+                existing.cant += 10;
+                existing.totalUSD = existing.cant * existing.precioUSD;
+            } else {
+                presupuestoList.push({
+                    id: itemData.id,
+                    codigo: itemData.codigo || 'CIV-OBRA',
+                    nombre: itemData.nombre,
+                    unidad: itemData.unidad,
+                    cant: 10,
+                    precioUSD: itemData.precioUSD,
+                    totalUSD: itemData.precioUSD * 10
+                });
+            }
+
+            document.getElementById('cotizador').scrollIntoView({ behavior: 'smooth' });
+            actualizarResumenPresupuesto();
+        }
+
+        function removerDelPresupuesto(id) {
+            presupuestoList = presupuestoList.filter(i => i.id !== id);
+            actualizarResumenPresupuesto();
+        }
+
+        function limpiarCotizacion() {
+            presupuestoList = [];
+            actualizarResumenPresupuesto();
+        }
+
+        // Update Budget Summary & Calculations
+        function actualizarResumenPresupuesto() {
+            const tbody = document.getElementById('presupuestoTableBody');
+            const emptyText = document.getElementById('emptyPresupuesto');
+            const rate = parseFloat(document.getElementById('usdRate').value) || 65.0;
+            const ivaPct = parseFloat(document.getElementById('presIVA').value) || 0;
+
+            if(presupuestoList.length === 0) {
+                tbody.innerHTML = '';
+                emptyText.classList.remove('hidden');
+                document.getElementById('subtotalUSD').textContent = "$0.00";
+                document.getElementById('ivaUSD').textContent = "$0.00";
+                document.getElementById('totalUSD').textContent = "$0.00";
+                document.getElementById('totalBS').textContent = "0.00 Bs.";
+                return;
+            }
+
+            emptyText.classList.add('hidden');
+            tbody.innerHTML = '';
+            let subtotalUSD = 0;
+
+            presupuestoList.forEach(item => {
+                subtotalUSD += item.totalUSD;
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-900/60 transition-colors";
+                tr.innerHTML = `
+                    <td class="py-2.5 font-bold text-white">
+                        <span class="text-[10px] font-normal text-teal-400 block">${item.codigo}</span>
+                        ${item.nombre}
+                    </td>
+                    <td class="py-2.5 text-center font-bold text-slate-200">${item.cant}</td>
+                    <td class="py-2.5 text-center text-slate-400">${item.unidad}</td>
+                    <td class="py-2.5 text-right font-medium text-slate-300">$${item.precioUSD.toFixed(2)}</td>
+                    <td class="py-2.5 text-right font-black text-teal-300">$${item.totalUSD.toFixed(2)}</td>
+                    <td class="py-2.5 text-center">
+                        <button onclick="removerDelPresupuesto('${item.id}')" class="text-rose-400 hover:text-rose-300 p-1"><i class="fa-solid fa-trash-can"></i></button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            const ivaMontoUSD = subtotalUSD * (ivaPct / 100);
+            const totalUSD = subtotalUSD + ivaMontoUSD;
+            const grandTotalBS = totalUSD * rate;
+
+            document.getElementById('subtotalUSD').textContent = `$${subtotalUSD.toFixed(2)}`;
+            document.getElementById('ivaUSD').textContent = `$${ivaMontoUSD.toFixed(2)}`;
+            document.getElementById('totalUSD').textContent = `$${totalUSD.toFixed(2)}`;
+            document.getElementById('totalBS').textContent = `${grandTotalBS.toLocaleString('es-VE', {minimumFractionDigits: 2})} Bs.`;
+        }
+
+        // Custom Partida Handler
+        function openCustomPartidaModal() {
+            document.getElementById('customPartidaModal').classList.remove('hidden');
+        }
+        function closeCustomPartidaModal() {
+            document.getElementById('customPartidaModal').classList.add('hidden');
+        }
+        function saveCustomPartida(e) {
+            e.preventDefault();
+            const nombre = document.getElementById('newPartidaNombre').value;
+            const unidad = document.getElementById('newPartidaUnidad').value;
+            const precio = parseFloat(document.getElementById('newPartidaPrecio').value);
+
+            const count = partidasData.length + 1;
+            const newId = 'custom-' + Date.now();
+            partidasData.push({
+                id: newId,
+                codigo: `CIV-${count < 10 ? '0' + count : count}`,
+                nombre: nombre,
+                unidad: unidad,
+                precioUSD: precio,
+                desc: "Partida de obra personalizada incorporada al catálogo.",
+                icono: "fa-hammer"
+            });
+
+            renderPartidasGrid();
+            populateCotizadorSelect();
+            closeCustomPartidaModal();
+
+            document.getElementById('newPartidaNombre').value = '';
+            document.getElementById('newPartidaUnidad').value = '';
+            document.getElementById('newPartidaPrecio').value = '';
+        }
+
+        // WhatsApp Export
+        function solicitarAtencionPresupuesto() {
+            if(presupuestoList.length === 0) {
+                alert('Debe incluir al menos una partida de obra en el presupuesto.');
+                return;
+            }
+
+            const cliente = document.getElementById('presCliente').value;
+            const rif = document.getElementById('presRIF').value;
+            const num = document.getElementById('presNum').value;
+            const rate = parseFloat(document.getElementById('usdRate').value) || 65.0;
+            const ivaPct = parseFloat(document.getElementById('presIVA').value) || 0;
+
+            let subtotalUSD = presupuestoList.reduce((a, b) => a + b.totalUSD, 0);
+            let ivaMontoUSD = subtotalUSD * (ivaPct / 100);
+            let totalUSD = subtotalUSD + ivaMontoUSD;
+
+            let text = `*CIVILEX - PRESUPUESTO DE OBRA*\n`;
+            text += `*N°:* ${num}\n`;
+            text += `*Cliente:* ${cliente}\n`;
+            text += `*RIF/ID:* ${rif}\n\n`;
+            text += `*DETALLE DE PARTIDAS:*\n`;
+
+            presupuestoList.forEach(i => {
+                text += `• [${i.codigo}] ${i.nombre}: ${i.cant} ${i.unidad} x $${i.precioUSD.toFixed(2)} = *$${i.totalUSD.toFixed(2)}*\n`;
+            });
+
+            text += `\n*Subtotal Obra:* $${subtotalUSD.toFixed(2)}`;
+            text += `\n*IVA (${ivaPct}%):* $${ivaMontoUSD.toFixed(2)}`;
+            text += `\n*TOTAL PRESUPUESTO:* *$${totalUSD.toFixed(2)} USD*`;
+            text += `\n*Total Bs. (Tasa ${rate}):* ${(totalUSD * rate).toFixed(2)} Bs.`;
+
+            const encoded = encodeURIComponent(text);
+            window.open(`https://wa.me/584140000000?text=${encoded}`, '_blank');
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            alert('¡Gracias por contactar a CIVILEX! Un ingeniero se comunicará con usted a la brevedad.');
+            e.target.reset();
+        }
+
+        // Professional Print Mode
+        function imprimirPresupuesto() {
+            if(presupuestoList.length === 0) {
+                alert('No hay partidas agregadas en la propuesta de obra.');
+                return;
+            }
+
+            const rate = parseFloat(document.getElementById('usdRate').value) || 65.0;
+            const ivaPct = parseFloat(document.getElementById('presIVA').value) || 0;
+
+            document.getElementById('printCliente').textContent = document.getElementById('presCliente').value;
+            document.getElementById('printRIF').textContent = document.getElementById('presRIF').value;
+            document.getElementById('printUbicacion').textContent = document.getElementById('presUbicacion').value;
+            document.getElementById('printNum').textContent = document.getElementById('presNum').value;
+            document.getElementById('printDate').textContent = new Date().toLocaleDateString('es-VE');
+            document.getElementById('printTasa').textContent = rate.toFixed(2);
+
+            const printTable = document.getElementById('printItemsTable');
+            let tableHTML = `
+                <table class="w-full text-left text-xs border-collapse">
+                    <thead>
+                        <tr class="border-b-2 border-slate-900 bg-slate-100">
+                            <th class="py-2 px-2 font-bold">Cód.</th>
+                            <th class="py-2 px-2 font-bold">Descripción de Partida</th>
+                            <th class="py-2 px-2 text-center font-bold">Cant.</th>
+                            <th class="py-2 px-2 text-center font-bold">Unid.</th>
+                            <th class="py-2 px-2 text-right font-bold">P.U. ($)</th>
+                            <th class="py-2 px-2 text-right font-bold">Total ($)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            let subtotal = 0;
+            presupuestoList.forEach(i => {
+                subtotal += i.totalUSD;
+                tableHTML += `
+                    <tr class="border-b border-slate-200">
+                        <td class="py-2 px-2 font-bold text-slate-700">${i.codigo}</td>
+                        <td class="py-2 px-2 font-semibold text-slate-900">${i.nombre}</td>
+                        <td class="py-2 px-2 text-center font-bold">${i.cant}</td>
+                        <td class="py-2 px-2 text-center text-slate-600">${i.unidad}</td>
+                        <td class="py-2 px-2 text-right">$${i.precioUSD.toFixed(2)}</td>
+                        <td class="py-2 px-2 text-right font-bold">$${i.totalUSD.toFixed(2)}</td>
+                    </tr>
+                `;
+            });
+
+            tableHTML += `</tbody></table>`;
+            printTable.innerHTML = tableHTML;
+
+            const ivaUSD = subtotal * (ivaPct / 100);
+            const totalUSD = subtotal + ivaUSD;
+
+            document.getElementById('printSubtotalUSD').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('printIvaLabel').textContent = `IVA (${ivaPct}%):`;
+            document.getElementById('printIvaUSD').textContent = `$${ivaUSD.toFixed(2)}`;
+            document.getElementById('printTotalUSD').textContent = `$${totalUSD.toFixed(2)}`;
+            document.getElementById('printTotalBS').textContent = `${(totalUSD * rate).toLocaleString('es-VE', {minimumFractionDigits: 2})} Bs.`;
+
+            window.print();
+        }
+    </script>
+</body>
+</html>
